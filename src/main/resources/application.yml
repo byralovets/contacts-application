@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: 'contacts-application'
+  jpa:
+    open-in-view: false
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/contacts'
+    username: 'manager'
+    password: 'l3tm31n'
+    driver-class-name: 'org.postgresql.Driver'
+  liquibase:
+    change-log: 'liquibase/changelog-master.xml'
+    liquibase-schema: 'liquibase_schema'
+    default-schema: 'contacts_schema'
