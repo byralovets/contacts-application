@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="2024-03-11T15:45" author="Anton Ralovets">
+        <createSequence sequenceName="contact_phones_id_seq" schemaName="contacts_schema" incrementBy="1"/>
+
+        <createTable tableName="contact_phones" schemaName="contacts_schema">
+            <column name="id" type="bigint" defaultValueComputed="nextval('contact_phones_id_seq')">
+                <constraints primaryKey="true" primaryKeyName="pk_contact_phones"/>
+            </column>
+            <column name="primary" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="contact_phones"
+                                 baseColumnNames="contact_id"
+                                 constraintName="fk_contact_phone_by_contact"
+                                 referencedTableName="contacts"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

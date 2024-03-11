@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="2024-03-11T15:00" author="Anton Ralovets">
+        <createSequence sequenceName="contacts_id_seq" schemaName="contacts_schema" incrementBy="1"/>
+
+        <createTable tableName="contacts">
+            <column name="id" type="BIGINT" defaultValueComputed="nextval('contacts_id_seq')">
+                <constraints primaryKey="true" primaryKeyName="pk_contacts"/>
+            </column>
+            <column name="first_name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthday" type="DATE"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
