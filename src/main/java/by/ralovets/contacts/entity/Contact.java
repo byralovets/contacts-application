@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -29,13 +30,13 @@ public class Contact {
     private LocalDate birthday;
 
     @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ContactEmail> emails;
+    private Set<ContactEmail> emails = new HashSet<>();
 
     @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ContactPhone> phones;
+    private Set<ContactPhone> phones = new HashSet<>();
 
     @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ContactAddress> addresses;
+    private Set<ContactAddress> addresses = new HashSet<>();
 
     public void addEmail(ContactEmail email) {
         emails.add(email);
