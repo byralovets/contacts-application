@@ -3,6 +3,9 @@ spring:
     name: 'contacts-application'
   jpa:
     open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
   datasource:
     url: 'jdbc:postgresql://localhost:5432/contacts'
     username: 'manager'
