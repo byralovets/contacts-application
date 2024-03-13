@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -37,6 +38,30 @@ public class Contact {
 
     @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ContactAddress> addresses = new HashSet<>();
+
+    public void setEmails(Set<ContactEmail> emails) {
+        emails.stream()
+                .filter(email -> Objects.isNull(email.getContact()))
+                .forEach(email -> email.setContact(this));
+
+        this.emails = emails;
+    }
+
+    public void setPhones(Set<ContactPhone> phones) {
+        phones.stream()
+                .filter(phone -> Objects.isNull(phone.getContact()))
+                .forEach(phone -> phone.setContact(this));
+
+        this.phones = phones;
+    }
+
+    public void setAddresses(Set<ContactAddress> addresses) {
+        addresses.stream()
+                .filter(address -> Objects.isNull(address.getContact()))
+                .forEach(address -> address.setContact(this));
+
+        this.addresses = addresses;
+    }
 
     public void addEmail(ContactEmail email) {
         emails.add(email);

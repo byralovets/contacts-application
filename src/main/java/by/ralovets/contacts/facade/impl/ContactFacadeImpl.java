@@ -1,9 +1,9 @@
 package by.ralovets.contacts.facade.impl;
 
+import by.ralovets.contacts.data.mapper.ContactMapper;
+import by.ralovets.contacts.data.request.CreateContactDTO;
 import by.ralovets.contacts.data.request.UpdateContactDTO;
 import by.ralovets.contacts.data.response.ContactDTO;
-import by.ralovets.contacts.data.request.CreateContactDTO;
-import by.ralovets.contacts.data.mapper.ContactMapper;
 import by.ralovets.contacts.entity.Contact;
 import by.ralovets.contacts.facade.ContactFacade;
 import by.ralovets.contacts.service.ContactService;
@@ -50,15 +50,12 @@ public class ContactFacadeImpl implements ContactFacade {
     @Override
     @Transactional
     public ContactDTO updateContactById(Long id, UpdateContactDTO data) {
-        final Contact contact = contactService.findById(id);
+        Contact contact = contactService.findById(id);
 
-        contact.setFirstName(data.getFirstName());
-        contact.setLastName(data.getLastName());
-        contact.setBirthday(data.getBirthday());
+        contact = contactMapper.toExistingEntity(data, contact);
+        contact = contactService.save(contact);
 
-        final Contact persistedContact = contactService.save(contact);
-
-        return contactMapper.toDTO(persistedContact);
+        return contactMapper.toDTO(contact);
     }
 
     @Override

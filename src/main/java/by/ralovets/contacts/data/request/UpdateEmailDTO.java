@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class CreateEmailDTO {
+public class UpdateEmailDTO {
 
     @NotBlank(message = "Email must not be empty")
     @Size(max = 64, message = "Email must not exceed 64 characters")

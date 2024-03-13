@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class CreatePhoneDTO {
+public class UpdatePhoneDTO {
 
     @NotBlank(message = "Phone primary must not be empty")
     @Size(max = 64, message = "Phone primary must not exceed 64 characters")
