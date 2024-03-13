@@ -1,0 +1,14 @@
+package by.ralovets.contacts.data.mapper;
+
+import by.ralovets.contacts.data.request.CreatePhoneDTO;
+import by.ralovets.contacts.data.response.ContactPhoneDTO;
+import by.ralovets.contacts.entity.ContactPhone;
+import org.mapstruct.Mapper;
+
+@Mapper
+public interface ContactPhoneMapper {
+
+    ContactPhoneDTO toDTO(ContactPhone contactPhone);
+
+    ContactPhone toEntity(CreatePhoneDTO request);
+}
