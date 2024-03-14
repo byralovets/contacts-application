@@ -27,12 +27,15 @@ public class CreateContactDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
+    @NotNull(message = "Emails list must not be null")
     @NotEmpty(message = "Emails must not be empty")
     private Set<CreateEmailDTO> emails;
 
+    @NotNull(message = "Phones list must not be null")
     @NotEmpty(message = "Phones must not be empty")
     private Set<CreatePhoneDTO> phones;
 
+    @NotNull(message = "Addresses list must not be null")
     @NotEmpty(message = "Addresses must not be empty")
     private Set<CreateAddressDTO> addresses;
 }
