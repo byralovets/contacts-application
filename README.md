@@ -5,7 +5,7 @@
 1. Build and package your project:
 
 ```
-mvn clean install
+mvn clean package
 ```
 
 2. Build docker image with tag `contacts-backend`:
