@@ -11,7 +11,7 @@ mvn clean package
 2. Build docker image with tag `contacts-backend`:
 
 ```
-docker build -t contacts-database .
+docker build -t contacts-backend .
 ```
 
 3. Checkout to directory `deployment` then run the following command:
