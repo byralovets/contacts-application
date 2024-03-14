@@ -4,6 +4,7 @@ import by.ralovets.contacts.data.request.CreateContactDTO;
 import by.ralovets.contacts.data.request.UpdateContactDTO;
 import by.ralovets.contacts.data.response.ContactDTO;
 import by.ralovets.contacts.facade.ContactFacade;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class ContactController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ContactDTO create(@RequestBody CreateContactDTO data) {
+    public ContactDTO create(@RequestBody @Valid CreateContactDTO data) {
         return contactFacade.createContact(data);
     }
 
@@ -33,7 +34,7 @@ public class ContactController {
     }
 
     @PutMapping("/{id}")
-    public ContactDTO update(@PathVariable Long id, @RequestBody UpdateContactDTO data) {
+    public ContactDTO update(@PathVariable Long id, @RequestBody @Valid UpdateContactDTO data) {
         return contactFacade.updateContactById(id, data);
     }
 

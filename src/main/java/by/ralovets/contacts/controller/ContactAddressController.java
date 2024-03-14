@@ -4,6 +4,7 @@ import by.ralovets.contacts.data.request.CreateAddressDTO;
 import by.ralovets.contacts.data.request.UpdateAddressDTO;
 import by.ralovets.contacts.data.response.ContactAddressDTO;
 import by.ralovets.contacts.facade.AddressFacade;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +18,14 @@ public class ContactAddressController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ContactAddressDTO create(@RequestBody CreateAddressDTO data, @PathVariable Long contactId) {
+    public ContactAddressDTO create(@RequestBody @Valid CreateAddressDTO data, @PathVariable Long contactId) {
         return addressFacade.createAddress(contactId, data);
     }
 
     @PutMapping("/{addressId}")
     public ContactAddressDTO update(@PathVariable Long contactId,
                                     @PathVariable Long addressId,
-                                    @RequestBody UpdateAddressDTO data) {
+                                    @RequestBody @Valid UpdateAddressDTO data) {
         return addressFacade.updateAddressById(addressId, contactId, data);
     }
 
