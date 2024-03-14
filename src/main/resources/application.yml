@@ -7,7 +7,7 @@ spring:
     hibernate:
       ddl-auto: validate
   datasource:
-    url: 'jdbc:postgresql://localhost:5432/contacts'
+    url: 'jdbc:postgresql://contacts-database:5432/contacts'
     username: 'manager'
     password: 'l3tm31n'
     driver-class-name: 'org.postgresql.Driver'
