@@ -12,3 +12,18 @@ services:
       - POSTGRES_DB=contacts
     volumes:
       - './database-initialization:/docker-entrypoint-initdb.d'
+    networks:
+      - contacts-network
+  backend:
+    image: contacts-backend
+    container_name: 'contacts-backend'
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    networks:
+      - contacts-network
+
+networks:
+  contacts-network:
+    driver: bridge
