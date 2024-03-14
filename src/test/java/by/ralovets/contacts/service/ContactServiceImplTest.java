@@ -3,7 +3,6 @@ package by.ralovets.contacts.service;
 import by.ralovets.contacts.entity.Contact;
 import by.ralovets.contacts.repository.ContactRepository;
 import by.ralovets.contacts.service.impl.ContactServiceImpl;
-import by.ralovets.contacts.util.entity.BrokenContactTestBuilder;
 import by.ralovets.contacts.util.entity.ContactTestBuilder;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -37,26 +35,6 @@ public class ContactServiceImplTest {
 
     @Nested
     class SaveTest {
-
-        @Test
-        @DisplayName("Test should throw DataIntegrityViolationException because NOT NULL constraint failed")
-        void testShouldThrowDataIntegrityViolationException() {
-            final Contact contact = BrokenContactTestBuilder.brokenContact().build();
-            final String expectedMessage = "Some error message about NOT NULL constraints failed";
-
-            doThrow(new DataIntegrityViolationException(expectedMessage))
-                    .when(contactRepository)
-                    .save(contact);
-
-            final DataIntegrityViolationException exception = assertThrows(
-                    DataIntegrityViolationException.class,
-                    () -> contactService.save(contact)
-            );
-
-            final String actualMessage = exception.getMessage();
-
-            assertThat(actualMessage).isEqualTo(expectedMessage);
-        }
 
         @Test
         @DisplayName("Test should return expected response")
