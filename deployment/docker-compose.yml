@@ -7,9 +7,9 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_USER=manager
-      - POSTGRES_PASSWORD=l3tm31n
-      - POSTGRES_DB=contacts
+      - POSTGRES_DB=${CONTACTS_DB_NAME}
+      - POSTGRES_USER=${CONTACTS_DB_USER}
+      - POSTGRES_PASSWORD=${CONTACTS_DB_PASSWORD}
     volumes:
       - './database-initialization:/docker-entrypoint-initdb.d'
     networks:
@@ -19,6 +19,11 @@ services:
     container_name: 'contacts-backend'
     ports:
       - '8080:8080'
+    environment:
+      - CONTACTS_DB_HOST=${CONTACTS_DB_HOST}
+      - CONTACTS_DB_NAME=${CONTACTS_DB_NAME}
+      - CONTACTS_DB_USER=${CONTACTS_DB_USER}
+      - CONTACTS_DB_PASSWORD=${CONTACTS_DB_PASSWORD}
     depends_on:
       - postgres
     networks:

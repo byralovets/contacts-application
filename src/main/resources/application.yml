@@ -7,9 +7,9 @@ spring:
     hibernate:
       ddl-auto: validate
   datasource:
-    url: 'jdbc:postgresql://contacts-database:5432/contacts'
-    username: 'manager'
-    password: 'l3tm31n'
+    url: jdbc:postgresql://${CONTACTS_DB_HOST}:5432/${CONTACTS_DB_NAME}
+    username: ${CONTACTS_DB_USER}
+    password: ${CONTACTS_DB_PASSWORD}
     driver-class-name: 'org.postgresql.Driver'
   liquibase:
     change-log: 'liquibase/changelog-master.xml'
